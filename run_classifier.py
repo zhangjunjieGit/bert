@@ -30,30 +30,40 @@ flags = tf.flags
 
 FLAGS = flags.FLAGS
 
+file_path = os.path.dirname(__file__)
+
+model_dir = os.path.join(file_path, 'chinese_L-12_H-768_A-12/')
+config_name = os.path.join(model_dir, 'bert_config.json')
+ckpt_name = os.path.join(model_dir, 'bert_model.ckpt')
+output_dir = os.path.join(model_dir, '../tmp/result/')
+vocab_file = os.path.join(model_dir, 'vocab.txt')
+data_dir = os.path.join(model_dir, '../data/')
+output_dir = os.path.join(model_dir, '../output/')
+
 ## Required parameters
 flags.DEFINE_string(
-    "data_dir", 'E:\\code\python\\bert\\bert\\data',
+    "data_dir", data_dir,
     "The input data dir. Should contain the .tsv files (or other data files) "
     "for the task.")
 
 flags.DEFINE_string(
-    "bert_config_file", 'E:\\code\\python\\bert\\bert\\chinese_L-12_H-768_A-12\\bert_config.json',
+    "bert_config_file", config_name,
     "The config json file corresponding to the pre-trained BERT model. "
     "This specifies the model architecture.")
 
 flags.DEFINE_string("task_name", 'mytask', "The name of the task to train.")
 
-flags.DEFINE_string("vocab_file", 'E:\\code\\python\\bert\\bert\\chinese_L-12_H-768_A-12\\vocab.txt',
+flags.DEFINE_string("vocab_file", vocab_file,
                     "The vocabulary file that the BERT model was trained on.")
 
 flags.DEFINE_string(
-    "output_dir", 'E:\\code\\python\\bert\\bert\\output',
+    "output_dir", output_dir,
     "The output directory where the model checkpoints will be written.")
 
 ## Other parameters
 
 flags.DEFINE_string(
-    "init_checkpoint", 'E:\\code\\python\\bert\\bert\\chinese_L-12_H-768_A-12\\bert_model.ckpt',
+    "init_checkpoint", ckpt_name,
     "Initial checkpoint (usually from a pre-trained BERT model).")
 
 flags.DEFINE_bool(
